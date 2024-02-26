@@ -1,0 +1,51 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="counter">
+        <div class="value">0</div>
+        <div class="btn">
+            <button id="add">
+                ADD
+            </button>
+        </div>
+    </div>
+<script src="./src.js">
+   
+    
+</script>
+</body>
+</html> -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WebSocket Client</title>
+</head>
+<body>
+  <input type="text" id="messageInput" placeholder="Type a message...">
+  <button onclick=sendmsg()>Send</button>
+  <div id="messages"></div>
+
+  <script>
+   const socket = new WebSocket("ws://localhost:8080");
+   socket.addEventListener("open",()=>{
+    console.log("client is ready")
+   })
+   socket.addEventListener("message",(msg)=>{
+    document.getElementById("messages").innerText = msg.data
+    console.log(msg)
+   })
+   sendmsg= ()=>{
+    socket.send(document.getElementById("messageInput").value)
+    document.getElementById("messageInput").value = "";
+   }
+   
+  </script>
+</body>
+</html>
